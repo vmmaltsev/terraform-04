@@ -12,7 +12,7 @@
 
 Ответ:
 
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_1.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_1.png)
 
 ------
 
@@ -36,9 +36,12 @@ module "vpc_dev" {
 
 Ответ:
 
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_2.png)
+1.
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_2.png)
 
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_3.png)
+
+2.
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_3.png)
 
 ```
 
@@ -52,31 +55,31 @@ module "vpc_dev" {
 Ответ:
 
 1. terraform state list
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_4.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_4.png)
 
 2. terraform show
 ID ресурсов, которые пондобятся при восстановлении
 
 3. Полностью удалите из стейта модуль vpc.
 terraform state rm 'module.vpc_dev'
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_5.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_5.png)
 
 4. Полностью удалите из стейта модуль vm.
 terraform state rm 'module.test-vm'
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_6.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_6.png)
 
 5. Импортируйте все обратно. Проверьте terraform plan - изменений быть не должно.
 terraform import 'module.vpc_dev.yandex_vpc_network.vpc_network' enpjieeif3nseh2m891m
 terraform import 'module.vpc_dev.yandex_vpc_subnet.vpc_subnet'  e9b03s2isq6rtgrtlned
 terraform import 'module.test-vm.yandex_compute_instance.vm[0]' fhmo1bo65uvba3l9oc0l
 
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_7.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_7.png)
 
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_8.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_8.png)
 
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_9.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_9.png)
 
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_10.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_10.png)
 
 
 Предложенное обновление внутри "yandex_compute_instance.vm[0]" связано с добавлением строки "allow_stopping_for_update = true". Это означает, что если обновление ресурса требует остановки и последующего включения, Terraform автоматически будет выполнять эти действия. Если это значение не установлено, и остановка требуется для обновления, Terraform сообщит об ошибке.
@@ -120,7 +123,7 @@ module "vpc_dev" {
 Предоставьте код, план выполнения, результат из консоли YC.
 
 Ответ:
-![alt text](https://github.com/vmmaltsev/screenshot/raw/main/Screenshot_10.png)
+![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_10.png)
 
 data.template_file.cloudinit: Reading...
 data.template_file.cloudinit: Read complete after 0s [id=78040accecdf746a8bfcce08f2ce1299aac626fa72f7c0149ba23ffd889de9d6]
