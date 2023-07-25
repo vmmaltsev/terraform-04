@@ -54,7 +54,7 @@ module "vpc_dev" {
 Приложите список выполненных команд и скриншоты процессы.
 
 Ответ:
-
+```
 1. terraform state list
 ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_4.png)
 
