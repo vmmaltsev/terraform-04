@@ -1,8 +1,8 @@
-# Домашнее задание к занятию "Продвинутые методы работы с Terraform" - "Мальцев Виктор"
+# Домашнее задание к занятию «Продвинутые методы работы с Terraform» - `Мальцев Виктор`
 
-------
+---
 
-### Задание 1
+Задание 1
 
 1. Возьмите из [демонстрации к лекции готовый код](https://github.com/netology-code/ter-homeworks/tree/main/04/demonstration1) для создания ВМ с помощью remote модуля.
 2. Создайте 1 ВМ, используя данный модуль. В файле cloud-init.yml необходимо использовать переменную для ssh ключа вместо хардкода. Передайте ssh-ключ в функцию template_file в блоке vars ={} .
@@ -14,9 +14,9 @@
 
 ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_1.png)
 
-------
+---
 
-### Задание 2
+Задание 2
 
 1. Напишите локальный модуль vpc, который будет создавать 2 ресурса: **одну** сеть и **одну** подсеть в зоне, объявленной при вызове модуля. например: ```ru-central1-a```.
 2. Вы должны передать в модуль переменные с названием сети, zone и v4_cidr_blocks .
@@ -26,27 +26,28 @@
 6. Сгенерируйте документацию к модулю с помощью terraform-docs.    
  
 Пример вызова:
+
 ```
+
 module "vpc_dev" {
   source       = "./vpc"
   env_name     = "develop"
   zone = "ru-central1-a"
   cidr = "10.0.1.0/24"
 }
+
 ```
 
 Ответ:
 
-1.
-![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_2.png)
+![1](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_2.png)
 
+![2](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_3.png)
 
-2.
-![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_3.png)
+---
 
-```
+Задание 3
 
-### Задание 3
 1. Выведите список ресурсов в стейте.
 2. Полностью удалите из стейта модуль vpc.
 3. Полностью удалите из стейта модуль vm.
@@ -54,22 +55,28 @@ module "vpc_dev" {
 Приложите список выполненных команд и скриншоты процессы.
 
 Ответ:
-```
+
 1. terraform state list
+
 ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_4.png)
 
 2. terraform show
 ID ресурсов, которые пондобятся при восстановлении
 
 3. Полностью удалите из стейта модуль vpc.
+
 terraform state rm 'module.vpc_dev'
+
 ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_5.png)
 
 4. Полностью удалите из стейта модуль vm.
+
 terraform state rm 'module.test-vm'
+
 ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_6.png)
 
 5. Импортируйте все обратно. Проверьте terraform plan - изменений быть не должно.
+
 terraform import 'module.vpc_dev.yandex_vpc_network.vpc_network' enpjieeif3nseh2m891m
 terraform import 'module.vpc_dev.yandex_vpc_subnet.vpc_subnet'  e9b03s2isq6rtgrtlned
 terraform import 'module.test-vm.yandex_compute_instance.vm[0]' fhmo1bo65uvba3l9oc0l
@@ -89,7 +96,7 @@ terraform import 'module.test-vm.yandex_compute_instance.vm[0]' fhmo1bo65uvba3l9
 
 Вместе с этим, Terraform также удаляет блок "timeouts", который, похоже, не имеет значений. Это нормально и не должно вызывать проблем, если блок timeouts не был задан в конфигурации.
 
-```
+---
 
 ## Дополнительные задания (со звездочкой*)
 
@@ -97,12 +104,14 @@ terraform import 'module.test-vm.yandex_compute_instance.vm[0]' fhmo1bo65uvba3l9
 Задания под звёздочкой дополнительные (необязательные к выполнению) и никак не повлияют на получение вами зачета по этому домашнему заданию. 
 
 
-### Задание 4*
+Задание 4*
 
 1. Измените модуль vpc так, чтобы он мог создать подсети во всех зонах доступности, переданных в переменной типа list(object) при вызове модуля.  
   
 Пример вызова:
+
 ```
+
 module "vpc_prod" {
   source       = "./vpc"
   env_name     = "production"
@@ -121,11 +130,15 @@ module "vpc_dev" {
   ]
 }
 
+```
+
 Предоставьте код, план выполнения, результат из консоли YC.
 
 Ответ:
+
 ![alt text](https://github.com/vmmaltsev/screenshot/blob/main/Screenshot_10.png)
 
+```
 data.template_file.cloudinit: Reading...
 data.template_file.cloudinit: Read complete after 0s [id=78040accecdf746a8bfcce08f2ce1299aac626fa72f7c0149ba23ffd889de9d6]
 module.test-vm.data.yandex_compute_image.my_image: Reading...
@@ -275,6 +288,6 @@ Terraform will perform the following actions:
 
 Plan: 5 to add, 0 to change, 0 to destroy.
  
-
+```
 
 
