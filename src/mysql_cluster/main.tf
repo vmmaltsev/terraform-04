@@ -33,16 +33,6 @@ resource "yandex_mdb_mysql_cluster" "mysql_cluster" {
   }
 }
 
- hosts {
-    host {
-      zone       = "ru-central1-a"
-      subnet_id  = var.subnet_id[0]
-    }
-    host {
-      zone       = "ru-central1-b"
-      subnet_id  = var.subnet_id[1]
-    }
-  }
 
 output "cluster_id" {
   value = yandex_mdb_mysql_cluster.mysql_cluster.id

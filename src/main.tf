@@ -9,7 +9,7 @@
 #}
 
 module "vpc_dev" {
-  source   = "/root/homeworks/terraform-04/src/vpc"
+  source   = "/root/terraform-04/src/vpc"
   vpc_name = "develop"
    subnets = [
     { zone = "ru-central1-a", cidr = "10.0.1.0/24" },
